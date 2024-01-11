@@ -23,6 +23,15 @@ if (typeof editor === 'undefined') {
   loadSpinner();
 }
 
+//Hot Module Reloading Logic
+if (module.hot) {
+  module.hot.accept((err) => {
+    if (err) {
+      console.error('Cannot apply HMR update.', err);
+    }
+  })
+}
+
 // Check if service workers are supported
 if ('serviceWorker' in navigator) {
   // register workbox service worker
