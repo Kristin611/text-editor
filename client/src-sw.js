@@ -31,7 +31,7 @@ registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 registerRoute(
   ({ request }) => {
     console.log(request);
-    ['style', 'worker', 'script'].includes(request.destination)
+    return ['style', 'worker', 'script'].includes(request.destination)
   },
   new StaleWhileRevalidate({
     cacheName: 'asset-cache',
@@ -44,21 +44,21 @@ registerRoute(
 )
 
 // Register route for caching dynamic images
-registerRoute(
-  ({ request }) => request.destination === 'image',
-  new CacheFirst({
-    cachName: 'my-image-cache',
-    plugins: [
-      new CacheableResponsePlugin({
-        statuses: [0, 200],
-      }),
-      new ExpirationPlugin({
-        maxEntries: 60,
-        maxAgeSeconds: 30 * 24 * 60 * 60, //30 days
-      }),
-    ],
-  })
-)
+// registerRoute(
+//   ({ request }) => request.destination === 'image',
+//   new CacheFirst({
+//     cachName: 'my-image-cache',
+//     plugins: [
+//       new CacheableResponsePlugin({
+//         statuses: [0, 200],
+//       }),
+//       new ExpirationPlugin({
+//         maxEntries: 60,
+//         maxAgeSeconds: 30 * 24 * 60 * 60, //30 days
+//       }),
+//     ],
+//   })
+// )
 
 // registerRoute(
 //   ({ request }) => [

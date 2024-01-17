@@ -18,10 +18,10 @@ module.exports = () => {
       filename: '[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
     },
-    devServer: {
-      //
-      hot: 'only'
-    },
+    // devServer: {
+    //   //
+    //   hot: 'only'
+    // },
     plugins: [
       new HtmlWebpackPlugin({
         template: './index.html',
@@ -87,7 +87,8 @@ module.exports = () => {
           use: {
             loader: 'babel-loader',
             options: {
-              presets: ['@babel/preset-env']
+              presets: ['@babel/preset-env'],
+              plugins: ['@babel/plugin-proposal-object-rest-spread', '@babel/transform-runtime'],
             
             }
           }
